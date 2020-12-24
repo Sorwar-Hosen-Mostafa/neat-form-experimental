@@ -1,0 +1,99 @@
+---
+name: "child_visibility"
+description: "children are not allowed to buy alcohol"
+priority: 1
+condition: "age <= 18"
+actions:
+  - "child_visibility = true"
+---
+name: "decade_calculation"
+description: "decade calculation"
+priority: 1
+condition: "true"
+actions:
+  - "import java.math.BigInteger;"
+  - "decade_calculation =  age * 10"
+---
+name: "adult_visibility"
+description: "adults can buy alcohol"
+priority: 1
+condition: "age > 18 || child == 'adult'"
+actions:
+  - "adult_visibility =  true"
+---
+name: "email_subscription_visibility"
+description: "Display email subscription checkbox"
+priority: 1
+condition: "age > 18"
+actions:
+  - "email_subscription_visibility =  true"
+---
+name: "language_none_visibility"
+description: "Specify language if none is chosen"
+priority: 1
+condition: "choose_language['none'] != null"
+actions:
+  - "language_none_visibility =  true"
+---
+name: "choose_language_visibility"
+description: "Ask the user the languages they are proficient in"
+priority: 1
+condition: "gender.value == 'Female'"
+actions:
+  - "choose_language_visibility =  true"
+---
+name: "country_visibility"
+description: "Ask country"
+priority: 1
+condition: "email_subscription != null"
+actions:
+  - "country_visibility =  true"
+---
+name: "no_prev_pregnancies_visibility"
+description: "Ask last pregnancies"
+priority: 1
+condition: "decade_calculation >= 500 &&  decade_calculation < 1000"
+actions:
+  - "no_prev_pregnancies_visibility =  true"
+---
+name: "wiki_contribution_yes_visibility"
+description: "Ask contribution"
+priority: 1
+condition: "wiki_contribution != null && wiki_contribution.containsKey('yes')"
+actions:
+  - "wiki_contribution_yes_visibility = true"
+---
+name: "wiki_contribution_visibility"
+description: "Wiki contribution"
+priority: 1
+condition: "email_subscription != null"
+actions:
+  - "wiki_contribution_visibility =  true"
+---
+name: "delivery_methods_visibility"
+description: "Delivery method"
+priority: 1
+condition: "no_prev_pregnancies > 0"
+actions:
+  - "delivery_methods_visibility =  true"
+---
+name: "test_calculation"
+description: "Delivery method"
+priority: 1
+condition: "true"
+actions:
+  - "test_calculation =  'I am a calculation field'"
+---
+name: "male_avatar_visibility"
+description: "Show this avatar if gender is male"
+priority: 1
+condition: "gender.value == 'Male'"
+actions:
+  - "male_avatar_visibility =  true"
+---
+name: "female_avatar_visibility"
+description: "Show this avatar if gender is female"
+priority: 1
+condition: "gender.value == 'Female'"
+actions:
+  - "female_avatar_visibility =  true"

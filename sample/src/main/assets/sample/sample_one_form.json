@@ -1,0 +1,507 @@
+{
+  "form": "Profile",
+  "rules_file": "rules/yml/sample_one_form_rules.yml",
+  "steps": [
+    {
+      "title": "Demographics",
+      "fields": [
+        {
+          "name": "gender",
+          "type": "spinner",
+          "properties": {
+            "text": "Choose your gender"
+          },
+          "options": [
+            {
+              "name": "female",
+              "text": "Female",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A123390123123",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "male",
+              "text": "Male",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "S8918313",
+                "openmrs_entity_parent": ""
+              }
+            }
+          ],
+          "required_status": "yes:Please specify your gender"
+        },
+        {
+          "name": "nid_holder",
+          "type": "custom_spinner",
+          "properties": {
+            "text": "do you have NID?"
+          },
+          "options": [
+            {
+              "name": "yes",
+              "text": "yes",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "no",
+              "text": "no",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "",
+                "openmrs_entity_parent": ""
+              }
+            }
+          ],
+          "required_status": "yes:Please specify your option"
+        },
+        {
+          "name": "male_avatar",
+          "type": "custom_image",
+          "properties": {
+            "src": "avatar"
+          },
+          "subjects": "gender:text"
+        },
+        {
+          "name": "female_avatar",
+          "type": "custom_image",
+          "properties": {
+            "src": "avatar2"
+          },
+          "subjects": "gender:text"
+        },
+        {
+          "name": "info_toast_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "info",
+            "dismissible": "yes",
+            "title": "Info toast",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick!",
+            "notification_dialog_title": "Wubba Lubba Dub Dub",
+            "notification_dialog_text": "I am in great pain, please help me!!"
+          }
+        },
+        {
+          "name": "success_toast_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "success",
+            "dismissible": "yes",
+            "title": "Success toast",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick!",
+            "notification_dialog_title": "Wubba Lubba Dub Dub",
+            "notification_dialog_text": "I am in great pain, please help me!!"
+          }
+        },
+        {
+          "name": "warning_toast_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "warning",
+            "dismissible": "yes",
+            "title": "Warning toast",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick!",
+            "notification_dialog_title": "Wubba Lubba Dub Dub",
+            "notification_dialog_text": "I am in great pain, please help me!!"
+          }
+        },
+        {
+          "name": "error_toast_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "error",
+            "dismissible": "yes",
+            "title": "Error toast",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick!",
+            "notification_dialog_title": "Wubba Lubba Dub Dub",
+            "notification_dialog_text": "I am in great pain, please help me!!"
+          }
+        },
+        {
+          "name": "custom_toast_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "info",
+            "dismissible": "no",
+            "title": "Custom toast: {test_calculation}",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick! \n\nDecade from age: {decade_calculation}",
+            "background_color": "#082455",
+            "text_color": "#EBEE2F"
+          }
+        },
+        {
+          "name": "custom_toast2_notification",
+          "type": "toast_notification",
+          "properties": {
+            "notification_type": "info",
+            "dismissible": "no",
+            "title": "{test_calculation}",
+            "text": "Hey Morty! Morty I turned myself into a pickle. Am a pickle Rick!",
+            "background_color": "#082455",
+            "text_color": "#EBEE2F"
+          }
+        },
+        {
+          "name": "adult",
+          "type": "text_input_edit_text",
+          "properties": {
+            "hint": "Enter adult's phone number",
+            "input_type": "phone"
+          },
+          "meta_data": {
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "openmrs_entity_parent": ""
+          },
+          "validation": [
+            {
+              "condition": "value.length() <= 10",
+              "message": "value should be less than or equal to ten digits"
+            }
+          ],
+          "subjects": "age:number, child:text",
+          "required_status": "Yes:please add phone number"
+        },
+        {
+          "name": "age",
+          "type": "text_input_edit_text",
+          "properties": {
+            "hint": "Enter your age",
+            "input_type": "number"
+          },
+          "meta_data": {
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "openmrs_entity_parent": ""
+          },
+          "validation": [
+            {
+              "condition": "value.matches(\"^\\\\d{1,2}?$\")",
+              "message": "Not a valid age"
+            }
+          ],
+          "dependent_calculations": [
+            "test",
+            "decade"
+          ],
+          "required_status": "yes:Please add age"
+        },
+        {
+          "name": "child",
+          "type": "text_input_edit_text",
+          "properties": {
+            "hint": "I am a child",
+            "input_type": "text"
+          },
+          "meta_data": {
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "openmrs_entity_parent": ""
+          },
+          "required_status": "yes:Please add age",
+          "subjects": "age:number"
+        },
+        {
+          "name": "email_subscription",
+          "type": "checkbox",
+          "properties": {
+            "text": "Subscribe to email notifications"
+          },
+          "required_status": "no:Please specify if you want subscription",
+          "subjects": "age:number"
+        },
+        {
+          "name": "country",
+          "type": "spinner",
+          "properties": {
+            "text": "Choose your country of Origin",
+            "searchable": "Search country"
+          },
+          "options": [
+            {
+              "name": "none",
+              "text": "Select country"
+            },
+            {
+              "name": "america",
+              "text": "United States Of America",
+              "meta_data": {
+                "country_code": "+1"
+              }
+            },
+            {
+              "name": "canada",
+              "text": "Canada",
+              "meta_data": {
+                "country_code": "+1"
+              }
+            },
+            {
+              "name": "uk",
+              "text": "United Kingdom",
+              "meta_data": {
+                "country_code": "+44"
+              }
+            },
+            {
+              "name": "australia",
+              "text": "Australia",
+              "meta_data": {
+                "country_code": "+61"
+              }
+            },
+            {
+              "name": "Kenya",
+              "text": "Kenya",
+              "meta_data": {
+                "country_code": "+254"
+              }
+            },
+            {
+              "name": "tanzania",
+              "text": "Tanzania",
+              "meta_data": {
+                "country_code": "+255"
+              }
+            },
+            {
+              "name": "china",
+              "text": "China",
+              "meta_data": {
+                "country_code": "+86"
+              }
+            },
+            {
+              "name": "sweden",
+              "text": "Sweden",
+              "meta_data": {
+                "country_code": "+1"
+              }
+            },
+            {
+              "name": "russia",
+              "text": "Russia",
+              "meta_data": {
+                "country_code": "+7"
+              }
+            },
+            {
+              "name": "japan",
+              "text": "Japan",
+              "meta_data": {
+                "country_code": "+81"
+              }
+            },
+            {
+              "name": "singapore",
+              "text": "Singapore",
+              "meta_data": {
+                "country_code": "+65"
+              }
+            }
+          ],
+          "subjects": "email_subscription:map",
+          "required_status": "yes:Please specify your country"
+        },
+        {
+          "name": "choose_language",
+          "type": "multi_choice_checkbox",
+          "properties": {
+            "text": "Pick the languages you are proficient in."
+          },
+          "options": [
+            {
+              "name": "eng",
+              "text": "English",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A123123123123",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "french",
+              "text": "French",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A123123123123",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "kisw",
+              "text": "Kiswahili",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A123123123123",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "need_help",
+              "text": "Help me choose",
+              "is_exclusive": true,
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A918928912",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "none",
+              "text": "None of the above",
+              "is_exclusive": true,
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A123123123123",
+                "openmrs_entity_parent": ""
+              }
+            }
+          ],
+          "validation": [
+            {
+              "condition": " value != null && value['need_help'] == null",
+              "message": "You should be speaking at least one of the languages man!"
+            }
+          ],
+          "required_status": "yes:Please specify your languages",
+          "subjects": "email_subscription:map, gender:text"
+        },
+        {
+          "name": "language_none",
+          "type": "edit_text",
+          "properties": {
+            "hint": "Specify your language"
+          },
+          "meta_data": {
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "openmrs_entity_parent": ""
+          },
+          "required_status": "true:Please specify language",
+          "subjects": "choose_language:map"
+        },
+        {
+          "name": "wiki_contribution",
+          "type": "radio_group",
+          "properties": {
+            "text": "Have you ever contributed to or written a page in the Wiki?"
+          },
+          "options": [
+            {
+              "name": "yes",
+              "text": "Yes"
+            },
+            {
+              "name": "no",
+              "text": "No"
+            },
+            {
+              "name": "dont_know",
+              "text": "Dont know"
+            }
+          ],
+          "validation": [
+            {
+              "condition": "value != null && !value.containsKey('dont_know')",
+              "message": "Don't know is not an option"
+            }
+          ],
+          "required_status": "yes:Wiki contribution field is required.",
+          "subjects": "email_subscription:map"
+        },
+        {
+          "name": "wiki_contribution_yes",
+          "type": "edit_text",
+          "properties": {
+            "hint": "What was your contribution?"
+          },
+          "validation": [
+            {
+              "condition": "value.startsWith('I')",
+              "message": "Your statement must start with I"
+            }
+          ],
+          "required_status": "true:Please specify your contributions",
+          "subjects": "wiki_contribution:map"
+        },
+        {
+          "name": "dob",
+          "type": "datetime_picker",
+          "properties": {
+            "hint": "Start date",
+            "type": "date_picker",
+            "display_format": "dd/MM/yyyy",
+            "min_date": "01/01/2020",
+            "max_date": "01/01/2025"
+          },
+          "required_status": "true:Please specify your dob"
+        },
+        {
+          "name": "time",
+          "type": "datetime_picker",
+          "properties": {
+            "hint": "Start time",
+            "type": "time_picker",
+            "display_format": "hh:mm a"
+          },
+          "required_status": "true:Please specify the time you clocked in"
+        },
+        {
+          "name": "no_prev_pregnancies",
+          "type": "number_selector",
+          "properties": {
+            "visible_numbers": "5",
+            "max_value": "10",
+            "first_number": "0",
+            "text": "Number of previous pregnancies"
+          },
+          "validation": [
+            {
+              "condition": "value < 4",
+              "message": "Advice woman to register for Family Planning"
+            }
+          ],
+          "binding_fields": "decade_calculation:number",
+          "required_status": "yes:Please number of previous pregnancy"
+        },
+        {
+          "name": "delivery_methods",
+          "type": "multi_choice_checkbox",
+          "properties": {
+            "text": "Previous delivery methods."
+          },
+          "options": [
+            {
+              "name": "vaginal",
+              "text": "Vaginal delivery",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A12312332123123",
+                "openmrs_entity_parent": ""
+              }
+            },
+            {
+              "name": "c-section",
+              "text": "C-Section",
+              "meta_data": {
+                "openmrs_entity": "",
+                "openmrs_entity_id": "A12123123123123",
+                "openmrs_entity_parent": ""
+              }
+            }
+          ],
+          "subjects": "no_prev_pregnancies:number"
+        }
+      ]
+    }
+  ]
+}
